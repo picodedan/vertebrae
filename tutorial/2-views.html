@@ -23,19 +23,29 @@
 var Comment = Backbone.Model.extend({
   /* The argument passed to `initialize` is what the model is instantiated with:
    * in `new Comment(message)`, message will be passed to `initialize`. */
+
   initialize: function(message) {
     /* Set the initial values for `votes` to 0 and `message` to the message.
      * Remember to use setters when working with attributes! */
+     this.set('message', message)
+     this.set('votes', 0)
   },
   votes: function() {
     /* Return the votes attribute on this model.
      * Remember to use a getter when working with attributes! */
+     this.get('votes');
   },
-  upvote: function(){
+  upvote: function() {
     // Set the `votes` attribute to the current vote count plus one.
-  }
+    this.set('votes', +1);
+  },
   // Add a downvote function; don't forget the comma above.
+  downvote: function() {
+    this.set('votes', -1);
+  }
+
 });
+var testComment = new Comment('sucka!');
 
 /* - Backbone VIEW ------------------------------------------------------------
  * Now that we have a model, we'll want a view to display it.
